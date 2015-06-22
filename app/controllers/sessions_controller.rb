@@ -5,7 +5,11 @@ class SessionsController < ApplicationController
   def create
     auth_hash = request.env['omniauth.auth']
 
-    render :text => auth_hash.inspect
+    session[:token] = request.env["omniauth.auth"]["credentials"]["token"]
+
+    client = Jawbone::Client.new session[:token]
+
+    render :text => client.user
   end
 
   def failure
