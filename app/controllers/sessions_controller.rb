@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if session[:token]
+      redirect_to '/dashboard'
+    end
   end
 
   def create

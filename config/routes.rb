@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/failure'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -12,6 +6,10 @@ Rails.application.routes.draw do
   get   '/login', :to => 'sessions#new', :as => :login
   match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
   match '/auth/failure', :to => 'sessions#failure', :via => [:get, :post]
+
+  root 'sessions#new'
+
+  get '/dashboard', to: 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
