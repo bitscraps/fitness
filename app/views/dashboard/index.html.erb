@@ -1,3 +1,10 @@
-Welcome <%= @user["data"]["first"] %>
+<ul id="nav-mobile" class="side-nav fixed" style="width:240px;">
+  <li class="logo">
+    <%= image_tag "https://jawbone.com/#{@user["data"]["image"]}", style: 'width:210px; margin-top:10px;border-radius:105px;border: 2px SOLID #330000' %>
+  </li>
+</ul>
 
-<%= image_tag("https://jawbone.com/#{@user["data"]["image"]}") %>
+<main style="min-height:100%;">
+  <div class="container">
+  </div>
+</main>
