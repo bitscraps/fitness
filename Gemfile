@@ -19,10 +19,12 @@ gem 'capistrano-rails', group: :development
 
 gem 'jawbone'
 
-gem 'devise'
+gem 'omniauth'
+gem 'omniauth-jawbone'
+gem 'dotenv-rails'
+
 
 group :development, :test do
-  gem 'debugger'
   gem 'spring'
 end
 

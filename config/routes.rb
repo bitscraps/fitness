@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/failure'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'devise/sessions#new'
+  get   '/login', :to => 'sessions#new', :as => :login
+  match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
+  match '/auth/failure', :to => 'sessions#failure', :via => [:get, :post]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
