@@ -1,0 +1,17 @@
+.side-nav {
+  .logo {
+    img {
+      width:160px;
+      margin-top:10px;
+      border-radius:80px;
+      -webkit-box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.75);
+box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75);
+    }
+  }
+}
+
+.steps {
+  width:400px;
+  height:200px;
+}

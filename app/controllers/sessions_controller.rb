@@ -10,9 +10,9 @@ class SessionsController < ApplicationController
 
     session[:token] = request.env["omniauth.auth"]["credentials"]["token"]
 
-    client = Jawbone::Client.new session[:token]
+    @client = Jawbone::Client.new session[:token]
 
-    render :text => client.user
+    render :text => @client.user
   end
 
   def failure

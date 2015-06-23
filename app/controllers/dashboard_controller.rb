@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
-    client = Jawbone::Client.new session[:token]
+    @client = Jawbone::Client.new session[:token]
 
-    @user = client.user
+    @user = @client.user
   end
 end

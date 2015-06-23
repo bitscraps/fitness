@@ -1,10 +1,45 @@
 <ul id="nav-mobile" class="side-nav fixed" style="width:240px;">
   <li class="logo">
-    <%= image_tag "https://jawbone.com/#{@user["data"]["image"]}", style: 'width:210px; margin-top:10px;border-radius:105px;border: 2px SOLID #330000' %>
+    <%= image_tag "https://jawbone.com/#{@user["data"]["image"]}" %>
+  </li>
+  <li>
+<%= link_to "Connect With Jawbone", "/auth/jawbone" %>
   </li>
 </ul>
 
-<main style="min-height:100%;">
+<main style="min-height:100%;width:100%;">
   <div class="container">
+    <canvas id="canvas" width="800px" height="200"></canvas>
+
+
+    <script>
+
+
+      jQuery(function() {
+
+        var data, myNewChart;
+        data = {
+          labels: <%= raw @client.moves["data"]["items"].reverse.map{|day| Date.parse("#{day["date"]}").strftime("%a %d %b") }.as_json %>,
+          datasets: [
+            {
+              fillColor: "rgba(220,220,220,0.5)",
+              strokeColor: "rgba(220,220,220,1)",
+              pointColor: "rgba(220,220,220,1)",
+              pointStrokeColor: "#fff",
+              data: <%= raw @client.moves["data"]["items"].reverse.map{|day| day["details"]["steps"] } %>
+            }
+          ]
+        };
+        return myNewChart = new Chart($("#canvas").get(0).getContext("2d")).Line(data, {
+            scaleBeginAtZero: true,
+            scaleShowGridLines : false,
+        });
+      });
+    </script>
+    <% @client.moves["data"]["items"].each do |day| %>
+      <%= Date.parse("#{day["date"]}").strftime("%d/%m/%Y") %><br>
+      <%= day["details"]["steps"] %><br>
+    <% end %>
   </div>
 </main>
+
